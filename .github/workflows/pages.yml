@@ -30,8 +30,14 @@ jobs:
           use-public-rspm: true
 
       - name: Install R packages
-        run: |
-          Rscript -e 'install.packages(c("tidyverse","httr2","rjstat","jsonlite"), repos="https://cloud.r-project.org")'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            tidyverse
+            httr2
+            rjstat
+            jsonlite
+          dependencies: "hard"
 
       - name: Build KPI JSON
         run: Rscript scripts/kpi-approx.R
