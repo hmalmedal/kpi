@@ -33,9 +33,12 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-            tidyverse
+            stringr
             httr2
+            dplyr
+            purrr
             rjstat
+            lubridate
             jsonlite
 
       - name: Build KPI JSON

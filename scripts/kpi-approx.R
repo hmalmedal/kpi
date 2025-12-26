@@ -1,5 +1,10 @@
-library(tidyverse)
+library(stringr)
 library(httr2)
+library(dplyr)
+library(purrr)
+library(rjstat)
+library(lubridate)
+library(jsonlite)
 
 body <- list(
   query = list(
@@ -31,7 +36,7 @@ resp <- req |>
 
 KPI <- resp |>
   resp_body_string() |>
-  rjstat::fromJSONstat(use_factors = TRUE) |>
+  fromJSONstat(use_factors = TRUE) |>
   chuck(1) |>
   as_tibble()
 
@@ -48,6 +53,4 @@ KPI_approx <- KPI_dato %$%
   as_tibble() %>%
   rename(date = x, close = y)
 
-dir.create("site", showWarnings = FALSE, recursive = TRUE)
-
-jsonlite::write_json(list(data = KPI_approx), "site/kpi.json", pretty = TRUE)
+write_json(list(data = KPI_approx), "site/kpi.json", pretty = TRUE)
