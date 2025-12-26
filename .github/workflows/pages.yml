@@ -37,7 +37,6 @@ jobs:
             httr2
             rjstat
             jsonlite
-          dependencies: "hard"
 
       - name: Build KPI JSON
         run: Rscript scripts/kpi-approx.R
