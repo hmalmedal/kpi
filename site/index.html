@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KPI</title>
+</head>
+<body>
+  <h1>KPI</h1>
+  <p>Datafil: <a href="./kpi.json">kpi.json</a></p>
+  <pre id="status">Laster…</pre>
+
+  <script>
+    fetch("./kpi.json")
+      .then(r => r.json())
+      .then(j => {
+        const n = j?.data?.length ?? 0;
+        const last = n ? j.data[n - 1] : null;
+        document.getElementById("status").textContent =
+          `OK. Rader: ${n}\nSiste: ${last?.date}  close=${last?.close}`;
+      })
+      .catch(e => {
+        document.getElementById("status").textContent = "Feil: " + e;
+      });
+  </script>
+</body>
+</html>
