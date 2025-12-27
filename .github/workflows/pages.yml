@@ -40,6 +40,7 @@ jobs:
             rjstat
             lubridate
             jsonlite
+            magrittr
 
       - name: Build KPI JSON
         run: Rscript scripts/kpi-approx.R

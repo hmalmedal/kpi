@@ -5,6 +5,7 @@ library(purrr)
 library(rjstat)
 library(lubridate)
 library(jsonlite)
+library(magrittr)
 
 body <- list(
   query = list(
@@ -53,4 +54,4 @@ KPI_approx <- KPI_dato %$%
   as_tibble() %>%
   rename(date = x, close = y)
 
-write_json(list(data = KPI_approx), "site/kpi.json", pretty = TRUE)
+write_json(list(data = KPI_approx), "site/kpi.json")
